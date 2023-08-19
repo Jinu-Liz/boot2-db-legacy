@@ -1,0 +1,53 @@
+server:
+  port: 9191
+
+spring:
+  # DB 설정
+  first-db:
+    datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      username: ${FIR_DB_USER}
+      password: ${FIR_DB_PW}
+      jdbc-url: jdbc:mariadb://${FIR_DB_URL}
+
+  second-db:
+    datasource:
+      driver-class-name: org.mariadb.jdbc.Driver
+      username: ${SEC_DB_USER}
+      password: ${SEC_DB_PW}
+      jdbc-url: jdbc:mariadb://${SEC_DB_URL}
+
+  # JPA 설정
+  jpa:
+    show-sql: true
+    open-in-view: true
+    properties:
+      hibernate:
+        physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+        implicit_naming_strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+        dialect: org.hibernate.dialect.Oracle10gDialect
+        show_sql: true
+        format_sql: true    # 권장되지 X
+        use_sql_comments: true
+
+  devtools:
+    livereload:
+      enabled: true
+  freemarker:
+    cache: false
+
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
+
+# Mybatis 설정
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true
+    call-setters-on-nulls: true
+  mapper-locations: classpath:/mybatis/mapper/*.xml
+  config-location: classpath:/mybatis/config/mybatis-config.xml
