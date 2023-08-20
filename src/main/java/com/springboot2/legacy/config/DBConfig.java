@@ -14,6 +14,7 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.util.Map;
 
 @Configuration
@@ -24,9 +25,6 @@ public class DBConfig extends HikariConfig {
 
   @Autowired
   private JpaProperties jpaProperties;
-
-  @Autowired
-  private MybatisProperties mybatisProperties;
 
   protected void setConfigEntityManagerFactory(LocalContainerEntityManagerFactoryBean factory) {
     JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
@@ -39,9 +37,9 @@ public class DBConfig extends HikariConfig {
     factory.afterPropertiesSet();
   }
 
-  protected void setConfigSqlSessionFactory(SqlSessionFactoryBean sessionFactoryBean, DataSource dataSource) {
+  protected void setConfigSqlSessionFactory(SqlSessionFactoryBean sessionFactoryBean, DataSource dataSource) throws IOException {
     sessionFactoryBean.setDataSource(dataSource);
-    sessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource(mybatisProperties.getConfigLocation()));
-    sessionFactoryBean.setMapperLocations(mybatisProperties.resolveMapperLocations());
+    sessionFactoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:/mybatis/config/mybatis-config.xml"));
+    sessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:/mybatis/mapper/*.xml"));
   }
 }
