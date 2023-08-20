@@ -3,6 +3,7 @@
 
 <mapper namespace="com.springboot2.legacy.mapper.first.PokemonMapper">
 
+    <!-- alias를 지정해주었기 때문에 resultType에 경로를 생략하고 alias만 적으면 된다. -->
     <select id="getPokemons" resultType="PokemonDto">
         <![CDATA[
             SELECT

@@ -42,7 +42,7 @@ public class DBConnectTest {
   ItemService itemService;
 
   @Test
-  @Disabled
+//  @Disabled
   void firstDB() {
     List<PokemonEntity> all = pokemonRepository.findAll();
     all.forEach(ent -> System.out.println("FIRST DB JPA : " + ent.getPokemonId() + " : " + ent.getName()));

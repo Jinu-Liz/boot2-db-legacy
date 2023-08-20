@@ -41,8 +41,10 @@ public class FirstDBConfig extends DBConfig {
   @ConfigurationProperties(prefix = "spring.first-db.datasource")
   @Bean(name = FIRST_DATA_SOURCE)
   @Primary
-  public DataSource vocDataSource() {
-    return DataSourceBuilder.create().type(HikariDataSource.class).build();
+  public DataSource dataSource() {
+    return DataSourceBuilder.create()
+      .type(HikariDataSource.class)
+      .build();
   }
 
   @Bean(name = FIRST_MANAGER_FACTORY)
@@ -71,12 +73,13 @@ public class FirstDBConfig extends DBConfig {
   public SqlSessionFactory sqlSessionFactory(@Qualifier(FIRST_DATA_SOURCE) DataSource dataSource) throws Exception {
     SqlSessionFactoryBean sessionFactoryBean = new SqlSessionFactoryBean();
     setConfigSqlSessionFactory(sessionFactoryBean, dataSource);
+
     return sessionFactoryBean.getObject();
   }
 
   @Bean(name = FIRST_SESSION_TEMPLATE)
   @Primary
-  public SqlSessionTemplate vocSqlSessionTemplate(@Qualifier(FIRST_SESSION_FACTORY) SqlSessionFactory sqlSessionFactory) {
+  public SqlSessionTemplate sqlSessionTemplate(@Qualifier(FIRST_SESSION_FACTORY) SqlSessionFactory sqlSessionFactory) {
     return new SqlSessionTemplate(sqlSessionFactory);
   }
 }

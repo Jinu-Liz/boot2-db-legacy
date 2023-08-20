@@ -40,7 +40,10 @@ public class SecondDBConfig extends DBConfig {
   @ConfigurationProperties(prefix = "spring.second-db.datasource")
   @Bean(name = SECOND_DATA_SOURCE)
   public DataSource ajpDataSource() {
-    return DataSourceBuilder.create().type(HikariDataSource.class).build();
+
+    return DataSourceBuilder.create()
+      .type(HikariDataSource.class)
+      .build();
   }
 
   @Bean(name = SECOND_MANAGER_FACTORY)

@@ -1,8 +1,6 @@
 package com.springboot2.legacy.config;
 
-import com.zaxxer.hikari.HikariConfig;
 import org.mybatis.spring.SqlSessionFactoryBean;
-import org.mybatis.spring.boot.autoconfigure.MybatisProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateProperties;
 import org.springframework.boot.autoconfigure.orm.jpa.HibernateSettings;
@@ -18,7 +16,7 @@ import java.io.IOException;
 import java.util.Map;
 
 @Configuration
-public class DBConfig extends HikariConfig {
+public class DBConfig {
 
   @Autowired
   private HibernateProperties hibernateProperties;
