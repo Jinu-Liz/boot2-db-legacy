@@ -46,8 +46,5 @@ logging:
 
 # Mybatis 설정
 mybatis:
-  configuration:
-    map-underscore-to-camel-case: true
-    call-setters-on-nulls: true
   mapper-locations: classpath:/mybatis/mapper/*.xml
   config-location: classpath:/mybatis/config/mybatis-config.xml
