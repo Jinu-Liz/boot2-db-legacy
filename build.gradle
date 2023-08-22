@@ -9,7 +9,8 @@ buildscript {
 plugins {
 	id 'org.springframework.boot' version '2.6.5'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
-	id 'com.ewerk.gradle.plugins.querydsl' version '1.0.10'     // queryDSL plugins 추가
+	// queryDSL plugins 추가. Q-Type 클래스를 생성.
+	id 'com.ewerk.gradle.plugins.querydsl' version '1.0.10'
 	id 'java'
 }
 
@@ -50,7 +51,6 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	testCompileOnly 'org.projectlombok:lombok'      // 테스트 시 lombok 의존성 주입
-	testCompileOnly 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
@@ -58,7 +58,7 @@ tasks.named('test') {
 	useJUnitPlatform()
 }
 
-/* queryDSL 설정 추가 */
+/* queryDSL 빌드 설정 추가 */
 // queryDSL에서 사용할 경로 설정
 def querydslDir = "$buildDir/generated/querydsl"
 
