@@ -53,10 +53,6 @@ public class DBConnectTest {
     List<PokemonEntity> pokemonEntities = pokemonService.selectPokemon();
     pokemonEntities.forEach(ent -> System.out.println("FIRST DB QueryDSL : " + ent.getPokemonId() + " : " + ent.getName()));
 
-    PokemonDto pokemonDto = new PokemonDto();
-    pokemonDto.setName("Eevee");
-    pokemonDto.setType("NORMAL");
-    pokemonMapper.addPokemon(pokemonDto);
   }
 
   @Test
@@ -68,7 +64,7 @@ public class DBConnectTest {
     List<ItemDto> items = itemMapper.getItems();
     items.forEach(dto -> System.out.println("SECOND DB MyBatis : " + dto.getPrice() + ", " + dto.getStockQuantity()));
 
-//    List<ItemEntity> itemEntities = itemService.selectItems();
-//    itemEntities.forEach(ent -> System.out.println("SECOND DB QueryDSL : " + ent.getPrice() + ", " + ent.getStockQuantity()));
+    List<ItemEntity> itemEntities = itemService.selectItems();
+    itemEntities.forEach(ent -> System.out.println("SECOND DB QueryDSL : " + ent.getPrice() + ", " + ent.getStockQuantity()));
   }
 }
